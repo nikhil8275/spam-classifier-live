@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: spam-classifier
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    root: spam_web

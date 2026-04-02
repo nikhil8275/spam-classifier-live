@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+spam_env/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Dataset
+spam.csv
+
+# Local files
+.DS_Store
+*.log

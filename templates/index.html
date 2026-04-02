@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam SMS Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>SMS Spam Classifier</h1>
+        <p>Paste an SMS message below and see if it is spam.</p>
+
+        {% if not model_loaded %}
+            <div class="warning">
+                <p><strong>Warning:</strong> The model is not loaded. Please run <code>train_model.py</code> to create <code>model.pkl</code> and <code>vectorizer.pkl</code>.</p>
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            <textarea name="sms" placeholder="Enter SMS message here..." rows="5" required></textarea>
+            <button type="submit">Classify</button>
+        </form>
+
+        {% if error %}
+            <div class="error">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+
+        {% if prediction %}
+            <div class="result">
+                <h2>Prediction: <span class="pred-{{ 'spam' if prediction == 'Spam' else 'ham' }}">{{ prediction }}</span></h2>
+                {% if confidence %}
+                    <p>Confidence: {{ "%.2f"|format(confidence) }}%</p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="examples">
+            <h3>Sample messages</h3>
+            <ul>
+                <li>"Congratulations! You have won a free ticket. Reply YES to claim."</li>
+                <li>"Hey, are we still meeting for lunch today?"</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
