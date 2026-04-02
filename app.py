@@ -21,9 +21,9 @@ app = Flask(__name__)
 ps = PorterStemmer()
 
 BASE_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = BASE_DIR.parent
-VECTORIZER_PATH = PROJECT_ROOT / 'vectorizer.pkl'
-MODEL_PATH = PROJECT_ROOT / 'model.pkl'
+
+VECTORIZER_PATH = BASE_DIR / 'vectorizer.pkl'
+MODEL_PATH = BASE_DIR / 'model.pkl'
 
 
 def preprocessing_text(text):
